@@ -3,8 +3,10 @@ package com.example.erickgarcia.learningandroid_03;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
         names = this.getAllNames();
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        // para cambiar el layout es mas facil, aqui 3 ejemplos
         layoutManager = new LinearLayoutManager(this);
+        layoutManager = new GridLayoutManager(this, 3); // el entero es para numero de columna
+        layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
         adapter = new MyAdapter(names, R.layout.recycle_view, new MyAdapter.OnClickListener() {
             @Override
             public void onItemClick(String name, int position) {
